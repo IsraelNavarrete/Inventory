@@ -7,6 +7,7 @@ import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.inventory.R;
+import com.example.inventory.iu.login.LoginActivity;
 
 public class SplashActivity extends AppCompatActivity {
 

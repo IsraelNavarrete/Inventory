@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/NoActionBar">
         <activity android:name=".iu.InventoryActivity"></activity>
-        <activity android:name=".iu.SingUpActivity" />
-        <activity android:name=".iu.LoginActivity" />
+        <activity android:name=".iu.signup.SingUpActivity" />
+        <activity android:name=".iu.login.LoginActivity" />
         <activity
             android:name=".iu.SplashActivity"
             android:theme="@style/NoActionBar">

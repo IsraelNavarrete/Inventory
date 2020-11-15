@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".iu.LoginActivity"
+    tools:context=".iu.login.LoginActivity"
     android:id="@+id/llcontainer"
     android:padding="@dimen/login_llcontainer_padding"
     android:orientation="vertical">
@@ -19,12 +19,14 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilUser"
+        app:errorEnabled="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="89dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tieUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/tieName" />
@@ -32,12 +34,16 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilPassword"
+        app:errorEnabled="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="1dp"
+        app:endIconMode="password_toggle"
         tools:layout_editor_absoluteY="230dp">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiePassword"
+            android:inputType="textPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/tiePassword" />
@@ -90,6 +96,15 @@
         android:id="@+id/llbottombar"
         android:orientation="horizontal"
         android:layout_marginBottom="@dimen/login_llbottombar_margin_bottom">-->
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:indeterminate="true"
+        android:visibility="gone"
+        android:indeterminateTint="@color/colorPrimaryDark"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="err_user_empty">El usuario no puede estar vacio</string>
+    <string name="err_password_empty">La contraseña no puede estar vacia</string>
+    <string name="err_password_format">La contraseña es demasiado corta</string>
+</resources>
