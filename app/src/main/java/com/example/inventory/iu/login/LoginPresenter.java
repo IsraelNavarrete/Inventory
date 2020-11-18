@@ -53,6 +53,7 @@ public class LoginPresenter implements LoginContract.Presenter, LoginInteractorI
     @Override
     public void onAuthenticationError() {
         view.hideProgress();
+        view.setAuthenticationError();
     }
 
     @Override

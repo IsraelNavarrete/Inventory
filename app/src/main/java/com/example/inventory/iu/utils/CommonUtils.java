@@ -1,5 +1,10 @@
 package com.example.inventory.iu.utils;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,9 +17,36 @@ public class CommonUtils {
      * @param password
      * @return
      */
-    public static boolean isPasswordValid(String password) {
-        Pattern pattern = Pattern.compile("([A-Z][a-z]){8,20}");
+    public static boolean isPasswordValid(String password){
+        //Pattern pattern = Pattern.compile("^(?=.*[A-Z])[a-zA-Z0-9].{7,}$");
+        Pattern pattern = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$");
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
+    }
+
+    /**
+     * Metodo que comprueba el formato del email
+     * @param email
+     * @return
+     */
+    public static boolean isEmailValid(String email) {
+        Pattern pattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    /**
+     * Método que muestra un cuadro de dialogo con un ProcessDialog
+     * @return
+     */
+    public static ProgressDialog showLoadingDialog(Context context){
+        ProgressDialog progressDialog=new ProgressDialog(context);
+        progressDialog.show();
+        if (progressDialog.getWindow()!=null)
+            progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+        return progressDialog;
     }
 }

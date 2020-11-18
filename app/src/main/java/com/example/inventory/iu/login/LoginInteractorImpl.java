@@ -3,6 +3,7 @@ package com.example.inventory.iu.login;
 import android.os.Handler;
 import android.text.TextUtils;
 
+import com.example.inventory.data.repository.UserRepository;
 import com.example.inventory.iu.utils.CommonUtils;
 
 public class LoginInteractorImpl {
@@ -56,6 +57,10 @@ public class LoginInteractorImpl {
                 if (!CommonUtils.isPasswordValid(password))
                 {
                     presenter.onPasswordFormatError();
+                    return;
+                }
+                if(!UserRepository.getInstance().validateCredentials(user,password)){
+                    presenter.onAuthenticationError();
                     return;
                 }
                 //Caso de éxito

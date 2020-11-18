@@ -2,16 +2,19 @@ package com.example.inventory.iu.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
 
 import com.example.inventory.R;
 import com.example.inventory.iu.InventoryActivity;
 import com.example.inventory.iu.signup.SingUpActivity;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -43,9 +46,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         startActivity(intent);
     }
 
-
-
-
     /**
      * Metodo que valida si el inicio de sesion es correcto
      * @param view
@@ -71,13 +71,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         progressBar.setVisibility(View.GONE);
     }
 
-    /**
-     * Este metodo viene del contrato LoginContract.View
-     */
-    @Override
-    public void onAuthenticationError() {
 
-    }
 
     /**
      * Este metodo viene de la interfaz baseview
@@ -94,6 +88,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     public void setUserEmptyError() {
         tilUser.setError(getResources().getString(R.string.err_user_empty));
+        showSoftKeyBoard(tieUser);
     }
     /**
      * Este metodo viene de la interfaz UserView
@@ -101,6 +96,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     public void setPasswordFormatError() {
         tilPassword.setError(getResources().getString(R.string.err_password_format));
+        showSoftKeyBoard(tiePassword);
     }
     /**
      * Este metodo viene de la interfaz UserView
@@ -108,6 +104,13 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     public void setPasswordEmptyError() {
         tilPassword.setError(getResources().getString(R.string.err_password_empty));
+        showSoftKeyBoard(tiePassword);
+    }
+
+    @Override
+    public void setAuthenticationError() {
+        Snackbar.make(findViewById(R.id.llcontainer),getResources().getString(R.string.err_authentication),Snackbar.LENGTH_SHORT).show();
+        showSoftKeyBoard(tieUser);
     }
 
     @Override
@@ -152,7 +155,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     private void validateUser(String password) {
         if (tieUser.getText().toString().trim().isEmpty()) {
             tilUser.setError(getString(R.string.err_user_empty));
-            tilUser.requestFocus();
+            showSoftKeyBoard(tieUser);
         }else {
             tilUser.setErrorEnabled(false);
         }
@@ -162,15 +165,35 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     private void validatePassword(String password) {
         if (tiePassword.getText().toString().trim().isEmpty()) {
             tilPassword.setError(getString(R.string.err_password_empty));
-            tilPassword.requestFocus();
+            showSoftKeyBoard(tiePassword);
 
         }else if(tiePassword.getText().toString().length()<3) {
             tilPassword.setError(getString(R.string.err_password_format));
-            tilPassword.requestFocus();
+            showSoftKeyBoard(tiePassword);
         }else {
             tilPassword.setErrorEnabled(false);
         }
 
     }
     //endregion
+
+    /**
+     * Este método pone el foco en la vista y habilita el teclado virtual
+     * @param view
+     */
+    public void showSoftKeyBoard(View view){
+        view.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.showSoftInput(view,InputMethodManager.SHOW_IMPLICIT);
+    }
+
+    /**
+     * este método oculta el teclado virtual
+     * @param view
+     */
+    public void hideSoftKeyBoard(View view){
+        view.requestFocus();
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(),0);
+    }
 }

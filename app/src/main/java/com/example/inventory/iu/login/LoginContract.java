@@ -14,7 +14,7 @@ public interface LoginContract{
 
         //Método que muestra un mensaje de error la usuario indicando que la autenticación
         //no ha sido correcta
-        void onAuthenticationError();
+        void setAuthenticationError();
     }
 
     interface Presenter extends BasePresenter{

@@ -12,4 +12,6 @@ public interface UserView extends BaseView {
 
     //Método que indica la contraseña no puede ser nula
     void setPasswordEmptyError();
+
+    void setAuthenticationError();
 }

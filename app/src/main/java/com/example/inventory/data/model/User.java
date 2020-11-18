@@ -8,17 +8,22 @@ public class User {
     private String user;
     private String email;
     private String password;
+
     private String name;
+    private String imgURL;
+    private int typeUser;
 
     public User() {
     }
 
-    public User(int id, String user, String email, String password, String name) {
+    public User(int id, String user, String password, String name, String email, String imgURL, int typeUser) {
         this.id = id;
         this.user = user;
-        this.email = email;
         this.password = password;
         this.name = name;
+        this.email = email;
+        this.imgURL = imgURL;
+        this.typeUser = typeUser;
     }
 
     public int getId() {
@@ -76,7 +81,7 @@ public class User {
         User user = (User) o;
 
         if (id != user.id) return false;
-        return email.equals(user.email);
+        return user.equals(user.user);
     }
 
     @Override
