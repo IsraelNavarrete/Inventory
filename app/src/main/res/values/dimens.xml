@@ -7,4 +7,6 @@
     <dimen name="login_btLogin_width">140dp</dimen>
     <dimen name="singup_title_margin_top">30dp</dimen>
     <dimen name="dashboard_tablerow_margin_top">20dp</dimen>
+    <dimen name="layout_progressbar_tvLoading_margintop">10dp</dimen>
+    <dimen name="letter_icon_size">26dp</dimen>
 </resources>

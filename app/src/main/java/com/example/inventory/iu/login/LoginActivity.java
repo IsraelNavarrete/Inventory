@@ -1,15 +1,18 @@
 package com.example.inventory.iu.login;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.inventory.R;
 import com.example.inventory.iu.InventoryActivity;
@@ -109,8 +112,26 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     @Override
     public void setAuthenticationError() {
-        Snackbar.make(findViewById(R.id.llcontainer),getResources().getString(R.string.err_authentication),Snackbar.LENGTH_SHORT).show();
-        showSoftKeyBoard(tieUser);
+        
+        showError(getResources().getString(R.string.err_authentication));
+    }
+
+    private void showError(String string) {
+        //1. Inflar vista
+        View view = ((LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE))
+                .inflate(R.layout.snackbar_view,null);
+        TextView tvMessage = view.findViewById(R.id.tvMessage);
+        tvMessage.setText(string);
+
+        Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content),"",Snackbar.LENGTH_SHORT);
+
+        Snackbar.SnackbarLayout layout = (Snackbar.SnackbarLayout) snackbar.getView();
+        layout.setPadding(5,0,5,0);
+        layout.setBackgroundColor(ContextCompat.getColor(this,R.color.colorAccent));
+
+        layout.addView(view);
+
+        snackbar.show();
     }
 
     @Override

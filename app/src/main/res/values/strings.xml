@@ -16,4 +16,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="err_email_format">El formato no es correcto</string>
+    <string name="tvLoading">Cargando...</string>
+    <string name="tvNoData">No hay datos...</string>
 </resources>

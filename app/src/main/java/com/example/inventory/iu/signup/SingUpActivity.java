@@ -76,7 +76,7 @@ public class SingUpActivity extends AppCompatActivity implements SignUpContract.
     /**
      * Metodo que comprueba si es valido el usuario, la contraseña y el email
      */
-    public void signUp(){
+    public void validateUser(View view){
         presenter.validateUser(tieUser.toString(),tiePassword.toString(),tieConfirmPassword.toString(),tieEmail.toString());
     }
 

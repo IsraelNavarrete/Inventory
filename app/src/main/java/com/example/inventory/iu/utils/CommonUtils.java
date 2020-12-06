@@ -4,6 +4,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.view.Gravity;
+
+import com.example.inventory.R;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -44,7 +47,7 @@ public class CommonUtils {
         progressDialog.show();
         if (progressDialog.getWindow()!=null)
             progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        progressDialog.setIndeterminate(true);
+        progressDialog.setContentView(R.layout.progress_dialog);
         progressDialog.setCancelable(false);
         progressDialog.setCanceledOnTouchOutside(false);
         return progressDialog;
